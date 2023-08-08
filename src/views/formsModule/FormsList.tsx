@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import List from "../../components/utility/List";
 import ActionDropDown from "../../components/utility/ActionDropdown";
+import ListHeader from "../../components/utility/ListHeader/ListHeader";
 
 interface MainProps {
   endPoint: string
@@ -59,6 +60,9 @@ function ListComponent({IntlService}:MainProps) {
 
   return (
     <>
+    <ListHeader 
+        pagination={pagination}
+        />
     <List
         basicColumns={columns}
       
