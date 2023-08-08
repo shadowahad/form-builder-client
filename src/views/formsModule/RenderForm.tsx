@@ -12,7 +12,13 @@ const SchemaField = createSchemaField({
   },
 });
 
-const form = createForm();
+const form = createForm({
+  values: {
+    aaa: "sdsadsad",
+    bbb: "asd",
+    ccc: "asdsa",
+  },
+});
 const formStep = FormStep.createFormStep();
 console.log("formStep", formStep);
 const schema = {
