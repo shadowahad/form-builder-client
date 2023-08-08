@@ -27,7 +27,14 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
     ],
-    external: ["react", "react-dom"],
+    external: [
+      "react",
+      "react-dom",
+      "@formily/antd",
+      "@formily/core",
+      "@formily/react",
+      "antd",
+    ],
   },
   {
     input: "dist/esm/index.d.ts",
