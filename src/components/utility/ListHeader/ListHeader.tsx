@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from "react";
 import { Plus } from "react-feather";
-import { FormattedMessage } from "react-intl";
 import {
   Button,
   Card,
@@ -14,12 +13,11 @@ import {
   DashboardIcon,
   filterDateIcon,
   searchIcon,
-} from "../../../assets/wasfaty/SVG";
+} from "../../utility/SVG";
 import TotalRecords from "../../TotalRecords/TotalRecords";
 import FlatPicker from "react-flatpickr";
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash/debounce";
-import { IntlService } from "../../../views/wasfaty/services";
 import "../../../style.scss"
 // import PerPage from "../../../views/pages/List/components/PerPage";
 
@@ -37,6 +35,7 @@ interface ListHeaderProps {
   per_page: number;
   totalHeader: string;
   addButtonText: string;
+  IntlService: any
 }
 
 const ListHeader: React.FC<ListHeaderProps> = ({
@@ -53,6 +52,7 @@ const ListHeader: React.FC<ListHeaderProps> = ({
   per_page = 10,
   totalHeader,
   addButtonText,
+  IntlService
 }) => {
   const navigate = useNavigate();
 
@@ -69,9 +69,9 @@ const ListHeader: React.FC<ListHeaderProps> = ({
     []
   );
 
-  useEffect(() => {
-    getData();
-  }, [filter]);
+  // useEffect(() => {
+  //   getData();
+  // }, [filter]);
 
   const userData = JSON.parse(localStorage.getItem("userData") || "");
 
@@ -103,10 +103,8 @@ const ListHeader: React.FC<ListHeaderProps> = ({
                   className="add-form-button waves-effect round btun   btn btn-primary my-1"
                 >
                   <p className="">
-                    <FormattedMessage
-                      defaultMessage={addButtonText || "Add New Form"}
-                      id={addButtonText || "Add New Form"}
-                    />
+             
+                   {addButtonText || "Add New Form"}
                   </p>
                   <Plus size={18} />
                 </Button.Ripple>
@@ -121,10 +119,7 @@ const ListHeader: React.FC<ListHeaderProps> = ({
                   className="dashboard-button  my-1"
                 >
                   <p>
-                    <FormattedMessage
-                      defaultMessage={"Dashboard"}
-                      id="Dashboard"
-                    />
+                   Dashboard
                   </p>
                   <figure>{DashboardIcon}</figure>
                 </Button.Ripple>

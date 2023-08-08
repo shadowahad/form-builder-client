@@ -1,5 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 import { Col } from "reactstrap";
 import "../../style.scss";
 
@@ -19,7 +18,7 @@ const TotalRecords: React.FC<TotalRecordsProps> = ({
   return (
     <Col sm={md} className={`d-flex ${flex}`}>
       <div className="text">
-        <FormattedMessage id={title} defaultMessage={title} />
+      {title}
       </div>
       <div className="records-items"></div>
       <div className="text">{number || 0}</div>

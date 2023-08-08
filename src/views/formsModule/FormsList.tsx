@@ -62,6 +62,7 @@ function ListComponent({IntlService}:MainProps) {
     <>
     <ListHeader 
         pagination={pagination}
+        IntlService={IntlService}
         />
     <List
         basicColumns={columns}
