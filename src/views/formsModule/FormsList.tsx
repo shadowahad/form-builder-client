@@ -1,97 +1,107 @@
 import React, { useEffect, useState } from "react";
 
-import DataTable from "react-data-table-component";
+import List from "../../components/utility/List";
+import ActionDropDown from "../../components/utility/ActionDropdown";
 
-interface User {
-  _id: string;
-  type: string;
+interface MainProps {
+  endPoint: string
+  IntlService:any
 }
 
-interface Item {
-  site: {
-    _id?: string;
-    name?: string;
-    name_ar?: string;
-  };
-  user: {
-    _id: string;
-    name: string;
-  };
-  created_at: string;
-}
-
-interface Pagination {
-  page: number;
-  pageCount: number;
-  to: number;
-  totalPages: number;
-}
-
-interface Filter {
-  search: string;
-  fromDate: string;
-  toDate: string;
-}
-
-interface Props {
-  user: User;
-  PDFModal: React.FC;
-  getPdfObject: (formFields: any[]) => any; // Please replace 'any' with actual type
-}
-
-function ListComponent() {
+function ListComponent({IntlService}:MainProps) {
+  const [pagination, setpagination] = useState({
+    page: 9,
+    pageCount: 45,
+    to: 100,
+    totalPages: 100,
+  });
   const columns: Array<object> = [
     {
-      name: "Title",
-      selector: "title",
+      name: "Form Name",
+      selector: "name",
       sortable: true,
     },
     {
-      name: "Directior",
-      selector: "director",
+      name: "Created By",
+      selector: "createdBy",
       sortable: true,
     },
     {
-      name: "Runtime (m)",
-      selector: "runtime",
+      name: "Created At",
+      selector: "createdAt",
+      sortable: true,
+      right: true,
+    },
+    {
+      name: "Total Submission",
+      selector: "total",
+      sortable: true,
+      right: true,
+    },
+    {
+      name: "Action",
+      selector: "action",
+      cell:(row:any)=>{
+
+        return <>
+        <div>
+                
+      <ActionDropDown  editOp={true} deleteOp={true} />
+        </div>
+        </>
+      },
       sortable: true,
       right: true,
     },
   ];
-  const [count, setCount] = useState<number>(0);
 
-  useEffect(() => {
-    setInterval(() => {
-      setCount((prev) => prev + 1);
-    }, 1000);
-  }, []);
+  
 
   return (
     <>
-      <DataTable
-        title="Movies"
-        columns={columns}
-        data={[
+    <List
+        basicColumns={columns}
+      
+        Mock={[
           {
-            title: "red",
-            director: "james",
-            runtime: "200m",
+            name: "red",
+createdBy:"something",
+createdAt:"something",
+total:"something",
           },
           {
-            title: "red",
-            director: "james",
-            runtime: "200m",
+            name: "red",
+createdBy:"something",
+createdAt:"something",
+total:"something",
           },
-          ,
           {
-            title: "red",
-            director: "james",
-            runtime: "200m",
+            name: "red",
+createdBy:"something",
+createdAt:"something",
+total:"something",
           },
+          {
+            name: "red",
+createdBy:"something",
+createdAt:"something",
+total:"something",
+          },
+          
         ]}
+        // Mock={items}
+        isLoading={false}
+        pagination={pagination}
+        IntlService={IntlService}
+
+        // handlePageChange={getAllItems}
+      />
+      {/* <DataTable
+        columns={columns}
+       
         defaultSortFieldId="title"
         pagination
-      />
+      /> */}
     </>
   );
 }
