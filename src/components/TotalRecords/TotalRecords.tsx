@@ -1,6 +1,6 @@
 import React from "react";
 import { Col } from "reactstrap";
-import "../../style.scss";
+// import "../../style.scss";
 
 interface TotalRecordsProps {
   title: string;
@@ -17,9 +17,7 @@ const TotalRecords: React.FC<TotalRecordsProps> = ({
 }) => {
   return (
     <Col sm={md} className={`d-flex ${flex}`}>
-      <div className="text">
-      {title}
-      </div>
+      <div className="text">{title}</div>
       <div className="records-items"></div>
       <div className="text">{number || 0}</div>
     </Col>

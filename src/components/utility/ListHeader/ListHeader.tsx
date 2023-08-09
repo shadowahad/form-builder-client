@@ -1,24 +1,12 @@
 import React, { useCallback, useEffect } from "react";
 import { Plus } from "react-feather";
-import {
-  Button,
-  Card,
-  CardBody,
-  Col,
-  Input,
-  Row,
-  Spinner,
-} from "reactstrap";
-import {
-  DashboardIcon,
-  filterDateIcon,
-  searchIcon,
-} from "../../utility/SVG";
+import { Button, Card, CardBody, Col, Input, Row, Spinner } from "reactstrap";
+import { DashboardIcon, filterDateIcon, searchIcon } from "../../utility/SVG";
 import TotalRecords from "../../TotalRecords/TotalRecords";
 import FlatPicker from "react-flatpickr";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import debounce from "lodash/debounce";
-import "../../../style.scss"
+// import "../../../style.scss"
 // import PerPage from "../../../views/pages/List/components/PerPage";
 
 interface ListHeaderProps {
@@ -35,7 +23,7 @@ interface ListHeaderProps {
   per_page: number;
   totalHeader: string;
   addButtonText: string;
-  IntlService: any
+  IntlService: any;
 }
 
 const ListHeader: React.FC<ListHeaderProps> = ({
@@ -52,9 +40,9 @@ const ListHeader: React.FC<ListHeaderProps> = ({
   per_page = 10,
   totalHeader,
   addButtonText,
-  IntlService
+  IntlService,
 }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = useCallback(
     debounce((name: string, value: any) => {
@@ -99,13 +87,10 @@ const ListHeader: React.FC<ListHeaderProps> = ({
               {addFormUrl && (
                 <Button.Ripple
                   outline
-                  onClick={() => navigate(addFormUrl)}
+                  // onClick={() => navigate(addFormUrl)}
                   className="add-form-button waves-effect round btun   btn btn-primary my-1"
                 >
-                  <p className="">
-             
-                   {addButtonText || "Add New Form"}
-                  </p>
+                  <p className="">{addButtonText || "Add New Form"}</p>
                   <Plus size={18} />
                 </Button.Ripple>
               )}
@@ -115,12 +100,10 @@ const ListHeader: React.FC<ListHeaderProps> = ({
               userData?.type !== "pharmacist" ? (
                 <Button.Ripple
                   outline
-                  onClick={() => navigate(dashboardUrl)}
+                  // onClick={() => navigate(dashboardUrl)}
                   className="dashboard-button  my-1"
                 >
-                  <p>
-                   Dashboard
-                  </p>
+                  <p>Dashboard</p>
                   <figure>{DashboardIcon}</figure>
                 </Button.Ripple>
               ) : null}
