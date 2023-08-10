@@ -1,121 +1,84 @@
 import React from "react";
-import { FormStep, FormItem, Input, FormButtonGroup } from "@formily/antd";
+import {
+  Input,
+  Select,
+  FormItem,
+  FormLayout,
+  FormButtonGroup,
+  Submit,
+  Space,
+  FormTab,
+  FormCollapse,
+  ArrayTable,
+  ArrayCards,
+  FormGrid,
+  DatePicker,
+  Checkbox,
+  Cascader,
+  NumberPicker,
+  Switch,
+  Password,
+  PreviewText,
+  Radio,
+  Reset,
+  Editable,
+  TimePicker,
+  Transfer,
+  TreeSelect,
+  Upload,
+} from "@formily/antd";
 import { createForm } from "@formily/core";
-import { FormProvider, FormConsumer, createSchemaField } from "@formily/react";
-import { Button } from "antd";
+import { FormProvider, createSchemaField, FormConsumer } from "@formily/react";
+import "@formily/antd/dist/antd.css";
 
 const SchemaField = createSchemaField({
   components: {
+    Space,
+    FormGrid,
+    FormLayout,
+    FormTab,
+    FormCollapse,
+    ArrayTable,
+    ArrayCards,
     FormItem,
-    FormStep,
+    DatePicker,
+    Checkbox,
+    Cascader,
+    Editable,
     Input,
+    NumberPicker,
+    Switch,
+    Password,
+    PreviewText,
+    Radio,
+    Reset,
+    Select,
+    Submit,
+    TimePicker,
+    Transfer,
+    TreeSelect,
+    Upload,
   },
 });
 
-const form = createForm({
-  values: {
-    aaa: "sdsadsad",
-    bbb: "asd",
-    ccc: "asdsa",
-  },
-});
-const formStep = FormStep.createFormStep();
-console.log("formStep", formStep);
-const schema = {
-  type: "object",
-  properties: {
-    step: {
-      type: "void",
-      "x-component": "FormStep",
-      "x-component-props": {
-        formStep: "{{formStep}}",
-      },
-      properties: {
-        step1: {
-          type: "void",
-          "x-component": "FormStep.StepPane",
-          "x-component-props": {
-            title: "First Step",
-          },
-          properties: {
-            aaa: {
-              type: "string",
-              title: "AAA",
-              required: true,
-              "x-decorator": "FormItem",
-              "x-component": "Input",
-            },
-          },
-        },
-        step2: {
-          type: "void",
-          "x-component": "FormStep.StepPane",
-          "x-component-props": {
-            title: "Second Step",
-          },
-          properties: {
-            bbb: {
-              type: "string",
-              title: "AAA",
-              required: true,
-              "x-decorator": "FormItem",
-              "x-component": "Input",
-            },
-          },
-        },
-        step3: {
-          type: "void",
-          "x-component": "FormStep.StepPane",
-          "x-component-props": {
-            title: "The third step",
-          },
-          properties: {
-            ccc: {
-              type: "string",
-              title: "AAA",
-              required: true,
-              "x-decorator": "FormItem",
-              "x-component": "Input",
-            },
-          },
-        },
-      },
-    },
-  },
-};
+// {
+//   values: {
+//     aaa: "sdsadsad",
+//     bbb: "asd",
+//     ccc: "asdsa",
+//   },
+// }
+const form = createForm();
 
-export const RenderForm = () => {
+export const RenderForm = ({ scema }: any) => {
   return (
     <FormProvider form={form}>
-      <SchemaField schema={schema} scope={{ formStep }} />
+      <SchemaField schema={scema} />
       <FormConsumer>
         {() => (
-          <FormButtonGroup>
-            <Button
-              disabled={!formStep.allowBack}
-              onClick={() => {
-                formStep.back();
-              }}
-            >
-              Previous
-            </Button>
-            <Button
-              disabled={!formStep.allowNext}
-              onClick={() => {
-                formStep.next();
-              }}
-            >
-              Next step
-            </Button>
-            <Button
-              disabled={formStep.allowNext}
-              onClick={() => {
-                formStep.submit(console.log);
-              }}
-            >
-              submit
-            </Button>
-          </FormButtonGroup>
+          <FormButtonGroup.FormItem>
+            <Submit onSubmit={console.log}>Submit</Submit>
+          </FormButtonGroup.FormItem>
         )}
       </FormConsumer>
     </FormProvider>
