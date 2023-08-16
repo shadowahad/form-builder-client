@@ -44,6 +44,7 @@ export default [
       "@formily/core",
       "@formily/react",
       "antd",
+      "react-router-dom",
     ],
   },
   {

@@ -1,10 +1,12 @@
 import React, { FC, Fragment, useContext, useState } from "react";
-import { Edit, Trash2 } from "react-feather";
+import { Edit, Trash2, FileText } from "react-feather";
 // import { Link, useNavigate } from "react-router-dom";
-import { UncontrolledTooltip } from "reactstrap";
+// import { UncontrolledTooltip } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+
 // import { SC } from "./helper";
 // import SweetAlert from "react-bootstrap-sweetalert";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 // import { handleDelete } from "../../redux/layout";
 // import { IntlContext } from "../context/Internationalization";
 // import TemporaryDrawer from "./drawer";
@@ -19,6 +21,7 @@ interface ActionDropDownProps {
   name: string;
   isDeleteToPost?: boolean;
   getData: () => void;
+  data: any;
 }
 
 const ActionDropDown: FC<ActionDropDownProps> = ({
@@ -30,7 +33,10 @@ const ActionDropDown: FC<ActionDropDownProps> = ({
   name,
   isDeleteToPost,
   getData,
+
+  data,
 }) => {
+  const navigate = useNavigate();
   // const [state, setstate] = useState("");
   // const dispatch = useDispatch();
   // const [visibility, setVisibility] = useState(false);
@@ -87,7 +93,7 @@ const ActionDropDown: FC<ActionDropDownProps> = ({
       {editOp && (
         <>
           {/* <UncontrolledTooltip placement="bottom" target="edit"> */}
-            {/* Edit */}
+          {/* Edit */}
           {/* </UncontrolledTooltip> */}
           <Edit
             size={20}
@@ -97,24 +103,21 @@ const ActionDropDown: FC<ActionDropDownProps> = ({
           />
         </>
       )}
+      {
+        // fill && (
+        <FileText
+          className="ml-1 cursor-pointer font-weight-bolder Black ms-1"
+          size={20}
+          onClick={() => navigate(`/Form/${data.formName}/${data.projectId}`)}
+        />
 
-      {/* {path === "/users/user-update/" && (
-        <TemporaryDrawer>
-          <UserCreate
-            onSuccess={() => {
-              getData();
-            }}
-            edit={{
-              id: _id,
-            }}
-          />
-        </TemporaryDrawer>
-      )} */}
+        // )
+      }
 
       {deleteOp && (
         <>
           {/* <UncontrolledTooltip placement="bottom" target="delete"> */}
-            {/* Delete */}
+          {/* Delete */}
           {/* </UncontrolledTooltip> */}
           <Trash2
             className="ml-1 cursor-pointer font-weight-bolder Black ms-1"

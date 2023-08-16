@@ -14,15 +14,14 @@ interface ListItem {
 }
 
 interface ListProps {
-  basicColumns:any;
+  basicColumns: any;
   Mock: any;
-  handlePageChange: (page: number) => void;
+  handlePageChange: (page: number) => any;
   pagination?: any; // Replace 'any' with the appropriate type for pagination
   isLoading: boolean;
   tableProps?: any; // Replace 'any' with the appropriate type for tableProps
   isStopPaginationFirstCall?: boolean;
-  IntlService : any
-
+  IntlService: any;
 }
 
 const BootstrapCheckbox = forwardRef<HTMLInputElement, any>((props, ref) => (
@@ -39,16 +38,13 @@ function List({
   isLoading,
   tableProps = {},
   isStopPaginationFirstCall,
- IntlService
-
+  IntlService,
 }: ListProps) {
-
-  let columns = basicColumns.map((column) => {
+  let columns = basicColumns.map((column: any) => {
     if (!column.disableStartCase) {
-      column.name =  startCase(column.name.toLowerCase())
+      column.name = startCase(column.name.toLowerCase());
     } else {
-      column.name= column.name
-
+      column.name = column.name;
     }
     return column;
   });
@@ -60,7 +56,9 @@ function List({
           noHeader
           noDataComponent={
             <div className="p-2">
-             {isLoading ? "Loading Data..." : "There are no records to display"}
+              {isLoading
+                ? "Loading Data..."
+                : "There are no records to display"}
             </div>
           }
           columns={columns}
@@ -72,14 +70,10 @@ function List({
 
       <PaginationFooter
         pagination={pagination}
-        handlePageChange={(e)=>{
-          console.log("manai",e);
-          
-        }}
+        handlePageChange={handlePageChange}
         IntlService={IntlService}
         // isStopPaginationFirstCall={true}
       />
-      
     </>
   );
 }
