@@ -108,7 +108,7 @@ const ActionDropDown: FC<ActionDropDownProps> = ({
         <FileText
           className="ml-1 cursor-pointer font-weight-bolder Black ms-1"
           size={20}
-          onClick={() => navigate(`/Form/${data.formName}/${data.projectId}`)}
+          onClick={() => navigate(`/Form/${data.formName}/${data._id}`)}
         />
 
         // )

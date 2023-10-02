@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import {
   Input,
   Select,
@@ -70,7 +72,18 @@ const SchemaField = createSchemaField({
 // }
 const form = createForm();
 
-export const RenderForm = ({ scema }: any) => {
+export const RenderForm = ({ scema, serverCall, endPoint }: any) => {
+  const params = useParams();
+  const getForm = () => {
+    serverCall
+      .getCall({ url: endPoint, params: params.id })
+      .then((res: any) => console.log(res));
+  };
+
+  useEffect(() => {
+    getForm();
+  }, []);
+
   return (
     <FormProvider form={form}>
       <SchemaField schema={scema} />
